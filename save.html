@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наталия & Валерий 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root { --gold: #b5a48b; --dark: #2c2c2c; }
+        body { margin: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: var(--dark); line-height: 1.6; }
+        section { padding: 80px 20px; text-align: center; }
+        
+        /* Главный экран с параллаксом */
+        .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1000') center/cover fixed; 
+                display: flex; flex-direction: column; justify-content: center; color: white; }
+        h1 { font-size: 3.5rem; font-weight: 300; letter-spacing: 10px; margin: 20px 0; text-transform: uppercase; }
+        
+        /* Таймер */
+        .timer { display: flex; justify-content: center; gap: 15px; margin: 30px 0; font-family: 'Montserrat'; }
+        .t-item { background: rgba(181, 164, 139, 0.1); padding: 10px; min-width: 60px; border-radius: 5px; }
+        .t-num { display: block; font-size: 1.5rem; color: var(--gold); }
+
+        /* Программа дня */
+        .line { width: 1px; height: 50px; background: var(--gold); margin: 0 auto 20px; }
+        .event { margin-bottom: 40px; }
+        .event-time { font-family: 'Montserrat'; font-size: 0.8rem; letter-spacing: 2px; color: var(--gold); }
+
+        /* Анкета */
+        .form-box { background: #fdfdfb; padding: 40px 20px; border: 1px solid #eee; max-width: 450px; margin: 0 auto; text-align: left; font-family: 'Montserrat'; }
+        input, select { width: 100%; padding: 12px; margin: 10px 0 25px; border: none; border-bottom: 1px solid #ccc; background: none; outline: none; }
+        .btn { display: block; width: 100%; padding: 15px; background: var(--dark); color: white; text-align: center; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; border: none; cursor: pointer; }
+
+        .colors { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        .circle { width: 35px; height: 35px; border-radius: 50%; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div data-aos="fade-up" data-aos-duration="2000">
+            <p style="letter-spacing: 5px;">SAVE THE DATE</p>
+            <h1>N & V</h1>
+            <p style="font-size: 1.5rem;">08.08.2026</p>
+        </div>
+    </section>
+
+    <section data-aos="fade-up">
+        <h2 style="font-style: italic; font-size: 2.5rem;">Дорогие гости!</h2>
+        <p>Мы будем счастливы видеть вас на нашей свадьбе.</p>
+        <div class="timer" id="timer">
+            <div class="t-item"><span class="t-num" id="days">0</span>дн</div>
+            <div class="t-item"><span class="t-num" id="hours">0</span>час</div>
+            <div class="t-item"><span class="t-num" id="mins">0</span>мин</div>
+        </div>
+    </section>
+
+    <section data-aos="fade-right">
+        <h2 style="letter-spacing: 3px;">ПРОГРАММА</h2>
+        <div class="event"><div class="line"></div><div class="event-time">16:00</div><div>Сбор гостей</div></div>
+        <div class="event"><div class="line"></div><div class="event-time">17:00</div><div>Церемония</div></div>
+        <div class="event"><div class="line"></div><div class="event-time">18:00</div><div>Ужин</div></div>
+    </section>
+
+    <section style="background: #fdfdfb;" data-aos="zoom-in">
+        <h2>ДРЕСС-КОД</h2>
+        <p>Для нас важно ваше присутствие, но мы будем признательны, если вы поддержите палитру вечера:</p>
+        <div class="colors">
+            <div class="circle" style="background: #E5D3C5;"></div>
+            <div class="circle" style="background: #A6A996;"></div>
+            <div class="circle" style="background: #4A4E44;"></div>
+            <div class="circle" style="background: #FFFFFF;"></div>
+        </div>
+    </section>
+
+    <section data-aos="fade-up">
+        <div class="form-box">
+            <h3 style="text-align: center; font-family: serif; font-size: 1.8rem;">АНКЕТА ГОСТЯ</h3>
+            <label>Имя и Фамилия</label>
+            <input type="text" placeholder="Введите ваш ответ">
+            
+            <label>Планируете ли вы быть?</label>
+            <select>
+                <option>Да, с удовольствием</option>
+                <option>К сожалению, не смогу</option>
+            </select>
+
+            <label>Что предпочитаете из напитков?</label>
+            <select>
+                <option>Вино красное / белое</option>
+                <option>Шампанское</option>
+                <option>Крепкий алкоголь</option>
+                <option>Безалкогольные</option>
+            </select>
+            
+            <button class="btn" onclick="alert('Спасибо! Мы получили ваш ответ (почти)')">ОТПРАВИТЬ</button>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        // Простой скрипт таймера
+        const target = new Date('August 8, 2026 16:00:00').getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = target - now;
+            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        }, 1000);
+    </script>
+</body>
+</html>
