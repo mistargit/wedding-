@@ -45,12 +45,13 @@ background:black;
 transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
 }
 
-#welcome img{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-opacity:0.85;
+#welcome img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 60% 50%; /* Было 75%, ставим 60% для баланса */
+    opacity: 0.85;
 }
 
 .welcome-text{
@@ -182,15 +183,12 @@ outline:none;
 background: transparent;
 }
 
-.btn{
-width:100%;
-padding:15px;
-background:var(--dark);
-color:white;
-border:none;
-cursor:pointer;
-letter-spacing:2px;
-text-transform: uppercase;
+.btn {
+    display: inline-block; /* Чтобы кнопка не растягивалась на всю ширину */
+    width: auto;           /* Убираем 100% если было */
+    min-width: 280px;      /* Оптимальная ширина для телефона */
+    padding: 15px 20px;
+    /* ... остальные твои стили ... */
 }
 
 /* Адаптив */
@@ -199,6 +197,29 @@ text-transform: uppercase;
 .welcome-text p{font-size:1.1rem;}
 h1{font-size: 2.5rem; letter-spacing: 5px;}
 }
+.decorated-title h2::before,
+.decorated-title h2::after {
+    content: "";
+    display: inline-block;
+    width: 40px; 
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+}
+
+.decorated-title h2::before {
+    margin-right: 10px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><path d="M90,25 C70,5 50,5 10,25 M50,5 L50,45" stroke="%231a241e" stroke-width="2" fill="none"/></svg>');
+    transform: scaleX(-1);
+}
+
+.decorated-title h2::after {
+    margin-left: 10px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><path d="M90,25 C70,5 50,5 10,25 M50,5 L50,45" stroke="%231a241e" stroke-width="2" fill="none"/></svg>');
+}
+
 </style>
 </head>
 
@@ -209,7 +230,9 @@ h1{font-size: 2.5rem; letter-spacing: 5px;}
 <div class="welcome-text">
 <h1>Наталия & Валерий</h1>
 <p>08.08.2026</p>
-<button onclick="openInvite()">Открыть приглашение</button>
+<button class="btn" onclick="openInvite()" style="background-color: #722f37; border-radius: 8px; position: relative; z-index: 100;">
+    ОТКРЫТЬ ПРИГЛАШЕНИЕ
+</button>
 </div>
 </div>
 
@@ -224,20 +247,34 @@ h1{font-size: 2.5rem; letter-spacing: 5px;}
     </p>
 </section>
 
-<section data-aos="fade-up" data-aos-duration="1500" style="padding: 70px 20px; text-align: center; background-color: #f0f4f1; position: relative;">
+<section data-aos="fade-up" data-aos-duration="1500" style="padding: 60px 10px; text-align: center; background-color: #f0f4f1; position: relative;">
     
     <div style="position: absolute; top: -100px; left: 0; width: 100%; height: 100px; background: linear-gradient(to bottom, rgba(0,0,0,0), #f0f4f1);"></div>
 
-    <h2 style="font-family: 'Cormorant Garamond', serif; font-variant: small-caps; font-weight: 500; letter-spacing: 3px; margin-bottom: 25px; color: #1a241e; font-size: 1.8rem;">
-        Дорогие наши родные и близкие!
-    </h2>
-    
-    <p style="max-width: 550px; margin: 0 auto 35px; line-height: 1.8; font-family: 'Montserrat', sans-serif; font-variant: small-caps; font-weight: 400; color: #222; font-size: 1rem; letter-spacing: 1px;">
-        Совсем скоро в нашей жизни произойдет очень важное событие, и нам очень хотелось бы разделить этот замечательный день с вами, и поэтому мы приглашаем вас на нашу свадьбу!
-    </p>
+    <div style="position: relative; padding: 50px 15px; border: 1px solid #4a5d4e; margin: 0 5px;">
 
-    <div style="font-size: 2.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; color: #1a241e; font-weight: 500; letter-spacing: 4px; border-top: 1px solid rgba(26, 36, 30, 0.2); border-bottom: 1px solid rgba(26, 36, 30, 0.2); display: inline-block; padding: 10px 25px;">
-        08.08.2026
+        <svg style="position: absolute; top: -8px; left: -8px; width: 40px; height: 40px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M100,10 C50,10 10,50 10,100" stroke="#4a5d4e" stroke-width="3" fill="none"/><circle cx="10" cy="10" r="4" fill="#4a5d4e"/></svg>
+        <svg style="position: absolute; top: -8px; right: -8px; width: 40px; height: 40px; transform: rotate(90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M100,10 C50,10 10,50 10,100" stroke="#4a5d4e" stroke-width="3" fill="none"/><circle cx="10" cy="10" r="4" fill="#4a5d4e"/></svg>
+        <svg style="position: absolute; bottom: -8px; right: -8px; width: 40px; height: 40px; transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M100,10 C50,10 10,50 10,100" stroke="#4a5d4e" stroke-width="3" fill="none"/><circle cx="10" cy="10" r="4" fill="#4a5d4e"/></svg>
+        <svg style="position: absolute; bottom: -8px; left: -8px; width: 40px; height: 40px; transform: rotate(270deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M100,10 C50,10 10,50 10,100" stroke="#4a5d4e" stroke-width="3" fill="none"/><circle cx="10" cy="10" r="4" fill="#4a5d4e"/></svg>
+
+        <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 30px;">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M90,50 C70,10 50,10 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/><path d='M90,50 C70,90 50,90 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/></svg>" alt="Левая ветвь" style="width: 40px; height: auto; transform: scaleX(-1);">
+
+            <h2 style="font-family: 'Cormorant Garamond', serif; font-variant: small-caps; font-weight: 500; letter-spacing: 3px; color: #1a241e; font-size: 1.8rem; margin: 0;">
+                Дорогие наши<br>родные и близкие!
+            </h2>
+
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M90,50 C70,10 50,10 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/><path d='M90,50 C70,90 50,90 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/></svg>" alt="Правая ветвь" style="width: 40px; height: auto;">
+        </div>
+        
+        <p style="max-width: 500px; margin: 0 auto 35px; line-height: 1.8; font-family: 'Montserrat', sans-serif; font-variant: small-caps; font-weight: 400; color: #222; font-size: 1rem; letter-spacing: 1px;">
+            Совсем скоро в нашей жизни произойдет очень важное событие, и нам очень хотелось бы разделить этот замечательный день с вами, и поэтому мы приглашаем вас на нашу свадьбу!
+        </p>
+
+        <div style="font-size: 2.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; color: #1a241e; font-weight: 500; letter-spacing: 4px; border-top: 1px solid rgba(26, 36, 30, 0.2); border-bottom: 1px solid rgba(26, 36, 30, 0.2); display: inline-block; padding: 10px 25px;">
+            08.08.2026
+        </div>
     </div>
 </section>
 
