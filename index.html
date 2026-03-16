@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Наталия & Валерий</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+:root{
+--gold:#b5a48b;
+--dark:#2c2c2c;
+}
+
+body{
+margin:0;
+font-family:'Cormorant Garamond',serif;
+color:var(--dark);
+background:white;
+text-align:center;
+overflow-x: hidden;
+}
+
+section{
+padding:80px 20px;
+}
+
+/* ===== Экран открытия ===== */
+#welcome{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%; /* Убирает белую полоску на мобильных */
+z-index:9999;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+background:black;
+/* Плавное сворачивание занавеса */
+transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+}
+
+#welcome img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 60% 50%; /* Было 75%, ставим 60% для баланса */
+    opacity: 0.85;
+}
+
+.welcome-text{
+position:relative;
+color:white;
+text-align:center;
+}
+
+.welcome-text h1{
+font-size:3rem;
+letter-spacing:6px;
+margin-bottom:10px;
+}
+
+.welcome-text p{
+font-size:1.5rem;
+margin-bottom:30px;
+}
+
+.welcome-text button{
+padding:14px 30px;
+border:none;
+background:var(--gold);
+color:white;
+letter-spacing:2px;
+cursor:pointer;
+font-family:'Montserrat',sans-serif;
+text-transform: uppercase;
+}
+
+/* ===== Главный экран ===== */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('photo2.jpg') no-repeat;
+            background-size: cover; /* Растянуть на весь экран */
+            background-position: center; /* Центрировать */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+
+h1{
+font-size:3.5rem;
+letter-spacing:10px;
+font-weight:300;
+}
+
+/* ===== Таймер ===== */
+.timer{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-top:30px;
+font-family:'Montserrat';
+}
+
+.t-item {
+    background: #2d3e33; /* Приглушенный темно-зеленый */
+    color: #ffffff;      /* Белые цифры на зеленом фоне будут смотреться отлично */
+    padding: 15px;
+    border-radius: 8px;
+    /* остальные параметры не трогай */
+}
+
+
+.t-num{
+font-size:1.6rem;
+color:var(--gold);
+display: block;
+}
+
+/* ===== Программа ===== */
+.line {
+    width: 1px;
+    height: 50px;
+    background: #2d3e33; /* Зеленая линия */
+    margin: 0 auto 20px;
+}
+
+
+.event{
+margin-bottom:40px;
+}
+
+.event-time {
+    font-family: 'Montserrat', sans-serif;
+    color: #2d3e33; /* Тот же зеленый, что и в таймере */
+    font-weight: bold;
+    letter-spacing: 2px;
+    /* остальные параметры не трогай */
+}
+
+
+/* ===== Дресс-код ===== */
+.colors{
+display:flex;
+justify-content:center;
+gap:10px;
+margin-top:20px;
+}
+
+.circle{
+width:35px;
+height:35px;
+border-radius:50%;
+border:1px solid #ddd;
+}
+
+/* ===== Анкета ===== */
+.form-box{
+max-width:450px;
+margin:0 auto;
+text-align:left;
+font-family:'Montserrat';
+background:#fdfdfb;
+padding: 40px 20px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin:10px 0 25px;
+border:none;
+border-bottom:1px solid #ccc;
+outline:none;
+background: transparent;
+}
+
+.btn {
+    display: inline-block; /* Чтобы кнопка не растягивалась на всю ширину */
+    width: auto;           /* Убираем 100% если было */
+    min-width: 280px;      /* Оптимальная ширина для телефона */
+    padding: 15px 20px;
+    /* ... остальные твои стили ... */
+}
+
+/* Адаптив */
+@media(max-width:800px){
+.welcome-text h1{font-size:2.2rem;}
+.welcome-text p{font-size:1.1rem;}
+h1{font-size: 2.5rem; letter-spacing: 5px;}
+}
+.decorated-title h2::before,
+.decorated-title h2::after {
+    content: "";
+    display: inline-block;
+    width: 40px; 
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+}
+
+.decorated-title h2::before {
+    margin-right: 10px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><path d="M90,25 C70,5 50,5 10,25 M50,5 L50,45" stroke="%231a241e" stroke-width="2" fill="none"/></svg>');
+    transform: scaleX(-1);
+}
+
+.decorated-title h2::after {
+    margin-left: 10px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><path d="M90,25 C70,5 50,5 10,25 M50,5 L50,45" stroke="%231a241e" stroke-width="2" fill="none"/></svg>');
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="welcome">
+<img src="1773361661608.jpg" alt="Наталия и Валерий">
+<div class="welcome-text">
+<h1>Наталия & Валерий</h1>
+<p>08.08.2026</p>
+<button class="btn" onclick="openInvite()" style="background-color: #722f37; border-radius: 8px; position: relative; z-index: 100;">
+    ОТКРЫТЬ ПРИГЛАШЕНИЕ
+</button>
+</div>
+</div>
+
+<section class="hero" data-aos="fade-up" data-aos-duration="1500" style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; height: 100vh; text-align: center; padding-top: 20vh;">
+    
+    <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: rgba(255, 255, 255, 0.85); margin-bottom: 5px; letter-spacing: 12px; text-transform: uppercase;">
+        В & Н
+    </h1>
+
+    <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: rgba(255, 255, 255, 0.7); letter-spacing: 6px; font-style: italic;">
+        08.08.2026
+    </p>
+</section>
+
+<section data-aos="fade-up" data-aos-duration="1500" style="padding: 60px 10px; text-align: center; background-color: #f0f4f1; position: relative;">
+    
+    <div style="position: absolute; top: -100px; left: 0; width: 100%; height: 100px; background: linear-gradient(to bottom, rgba(0,0,0,0), #f0f4f1);"></div>
+
+    <div style="position: relative; padding: 50px 15px; border: 1px solid #4a5d4e; margin: 0 5px;">
+
+        <svg style="position: absolute; top: -8px; left: -8px; width: 40px; height: 40px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M100,10 C50,10 10,50 10,100" stroke="#4a5d4e" stroke-width="3" fill="none"/><circle cx="10" cy="10" r="4" fill="#4a5d4e"/></svg>
+        <svg style="position: absolute; top: -8px; right: -8px; width: 40px; height: 40px; transform: rotate(90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M100,10 C50,10 10,50 10,100" stroke="#4a5d4e" stroke-width="3" fill="none"/><circle cx="10" cy="10" r="4" fill="#4a5d4e"/></svg>
+        <svg style="position: absolute; bottom: -8px; right: -8px; width: 40px; height: 40px; transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M100,10 C50,10 10,50 10,100" stroke="#4a5d4e" stroke-width="3" fill="none"/><circle cx="10" cy="10" r="4" fill="#4a5d4e"/></svg>
+        <svg style="position: absolute; bottom: -8px; left: -8px; width: 40px; height: 40px; transform: rotate(270deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M100,10 C50,10 10,50 10,100" stroke="#4a5d4e" stroke-width="3" fill="none"/><circle cx="10" cy="10" r="4" fill="#4a5d4e"/></svg>
+
+        <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 30px;">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M90,50 C70,10 50,10 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/><path d='M90,50 C70,90 50,90 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/></svg>" alt="Левая ветвь" style="width: 40px; height: auto; transform: scaleX(-1);">
+
+            <h2 style="font-family: 'Cormorant Garamond', serif; font-variant: small-caps; font-weight: 500; letter-spacing: 3px; color: #1a241e; font-size: 1.8rem; margin: 0;">
+                Дорогие наши<br>родные и близкие!
+            </h2>
+
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M90,50 C70,10 50,10 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/><path d='M90,50 C70,90 50,90 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/></svg>" alt="Правая ветвь" style="width: 40px; height: auto;">
+        </div>
+        
+        <p style="max-width: 500px; margin: 0 auto 35px; line-height: 1.8; font-family: 'Montserrat', sans-serif; font-variant: small-caps; font-weight: 400; color: #222; font-size: 1rem; letter-spacing: 1px;">
+            Совсем скоро в нашей жизни произойдет очень важное событие, и нам очень хотелось бы разделить этот замечательный день с вами, и поэтому мы приглашаем вас на нашу свадьбу!
+        </p>
+
+        <div style="font-size: 2.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; color: #1a241e; font-weight: 500; letter-spacing: 4px; border-top: 1px solid rgba(26, 36, 30, 0.2); border-bottom: 1px solid rgba(26, 36, 30, 0.2); display: inline-block; padding: 10px 25px;">
+            08.08.2026
+        </div>
+    </div>
+</section>
+
+<section id="location" data-aos="fade-up" data-aos-duration="1000" style="text-align: center; padding: 60px 20px; background-color: #f0f4f1; color: #1a241e;">
+    
+    <div style="max-width: 600px; margin: 0 auto 30px;">
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 2rem; color: #1a241e; margin-bottom: 10px;">Ждем вас по адресу</h2>
+        <p style="font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: #1a241e; letter-spacing: 1px;">
+            Йошкар-Ола, ул. Героев Сталинградской битвы 100
+        </p>
+    </div>
+
+    <div style="max-width: 750px; margin: 0 auto; background: #fff; border: 1px solid rgba(26, 36, 30, 0.2); border-radius: 12px; overflow: hidden; box-shadow: 0 15px 45px rgba(26, 36, 30, 0.05);">
+        
+        <div id="photo-slider" style="width: 100%; height: 350px; position: relative; overflow: hidden;">
+            <img class="slide" src="club1.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; left: 0; top: 0; transition: opacity 0.8s ease-in-out; opacity: 1;">
+            <img class="slide" src="club2.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; left: 0; top: 0; transition: opacity 0.8s ease-in-out; opacity: 0;">
+            <img class="slide" src="club3.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; left: 0; top: 0; transition: opacity 0.8s ease-in-out; opacity: 0;">
+
+            <button onclick="changeSlide(-1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.7); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; color: #1a241e; font-size: 20px; z-index: 10;">&#10094;</button>
+            <button onclick="changeSlide(1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.7); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; color: #1a241e; font-size: 20px; z-index: 10;">&#10095;</button>
+        </div>
+
+        <div id="map" style="width: 100%; height: 350px; border-top: 1px solid #eee;"></div>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <a href="yandexmaps://maps.yandex.ru/?oid=222384795325" style="display: inline-block; padding: 14px 40px; background-color: #1a241e; color: #fff; text-decoration: none; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;">
+            ОТКРЫТЬ В НАВИГАТОРЕ
+        </a>
+    </div>
+
+    <script type="text/javascript">
+        // Логика слайдера с кнопками
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlide(index) {
+            slides.forEach(s => s.style.opacity = 0);
+            slides[index].style.opacity = 1;
+        }
+
+        function changeSlide(step) {
+            currentSlide = (currentSlide + step + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Автопрокрутка тоже остается, но кнопки её перебивают
+        let autoPlay = setInterval(() => changeSlide(1), 5000);
+
+        // Остановить автопрокрутку при нажатии на кнопки
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => clearInterval(autoPlay));
+        });
+
+        // Карта
+        ymaps.ready(function() {
+            var coords = [56.616909, 47.944092]; //
+            var myMap = new ymaps.Map("map", {
+                center: coords,
+                zoom: 17,
+                controls: [] 
+            });
+            var myPlacemark = new ymaps.Placemark(coords, {
+                iconCaption: 'MICHURIN CLUB' 
+            }, {
+                preset: 'islands#redDotIconWithCaption', 
+                iconColor: '#1a241e' 
+            });
+            myMap.geoObjects.add(myPlacemark);
+            myMap.behaviors.disable('scrollZoom');
+        });
+    </script>
+</section>
+
+
+
+<section 
+  style="background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('bg-program.jpg') no-repeat center center fixed; background-size: cover; color: #333;" 
+  data-aos="fade-up" 
+  data-aos-duration="1500"
+>
+    <h2 style="letter-spacing:3px; margin-bottom: 50px;">ПРОГРАММА ДНЯ</h2>
+    
+    <div class="event">
+        <div class="line"></div>
+        <div class="event-time">14:30</div>
+        <div style="font-weight: bold; letter-spacing: 1px; margin-bottom: 5px;">СБОР ГОСТЕЙ</div>
+        <p style="font-size: 0.9rem; font-family: 'Montserrat';">Прекрасная возможность для новых знакомств и теплых встреч с родными</p>
+    </div>
+
+    <div class="event">
+        <div class="line"></div>
+        <div class="event-time">15:00</div>
+        <div style="font-weight: bold; letter-spacing: 1px; margin-bottom: 5px;">ЦЕРЕМОНИЯ</div>
+        <p style="font-size: 0.9rem; font-family: 'Montserrat';">Самое главное событие дня</p>
+    </div>
+
+    <div class="event">
+        <div class="line"></div>
+        <div class="event-time">15:40 — 22:00</div>
+        <div style="font-weight: bold; letter-spacing: 1px; margin-bottom: 5px;">БАНКЕТ</div>
+        <p style="font-size: 0.9rem; font-family: 'Montserrat';">Время вкусной еды, теплых слов для поздравлений и танцев</p>
+    </div>
+</section>
+
+
+
+<section style="background:#fdfdfb;" data-aos="zoom-in" data-aos-duration="1500">
+<h2>ДРЕСС-КОД</h2>
+<p>Будем признательны, если поддержите палитру вечера</p>
+<div class="colors">
+<div class="circle" style="background:#E5D3C5;"></div>
+<div class="circle" style="background:#A6A996;"></div>
+<div class="circle" style="background:#4A4E44;"></div>
+<div class="circle" style="background:#FFFFFF;"></div>
+</div>
+</section>
+
+<section data-aos="fade-up" data-aos-duration="1500">
+<div class="form-box">
+<h3 style="text-align:center;">АНКЕТА ГОСТЯ</h3>
+<label>Имя и Фамилия</label>
+<input type="text" placeholder="Введите ваш ответ">
+
+<label>Планируете ли быть?</label>
+<select>
+<option>Да, с удовольствием</option>
+<option>К сожалению, не смогу</option>
+</select>
+
+<label>Что предпочитаете из напитков?</label>
+<select>
+<option>Вино красное / белое</option>
+<option>Шампанское</option>
+<option>Крепкий алкоголь</option>
+<option>Безалкогольные</option>
+</select>
+
+<button class="btn" onclick="alert('Спасибо! Мы получили ваш ответ')">ОТПРАВИТЬ</button>
+</div>
+</section>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init();
+
+// Открытие приглашения с эффектом сворачивания
+function openInvite(){
+    const welcome = document.getElementById("welcome");
+    welcome.style.transform = "translateY(-100%)"; 
+    welcome.style.opacity = "0";
+    
+    setTimeout(() => {
+        welcome.style.display = "none";
+    }, 1200);
+}
+
+// Таймер
+const target=new Date("August 8, 2026 16:00:00").getTime();
+setInterval(function(){
+    const now=new Date().getTime();
+    const diff=target-now;
+    if (diff > 0) {
+        document.getElementById("days").innerText=Math.floor(diff/(1000*60*60*24));
+        document.getElementById("hours").innerText=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+        document.getElementById("mins").innerText=Math.floor((diff%(1000*60*60))/(1000*60));
+    }
+},1000);
+</script>
+<section data-aos="fade-up" data-aos-duration="1500" style="padding: 60px 20px; text-align: center; background: #f9f9f9;">
+    <p style="font-family: 'Montserrat'; font-style: italic; margin-bottom: 25px; color: #666; letter-spacing: 1px;">До встречи осталось:</p>
+
+    <div class="timer" style="display: flex; justify-content: center; gap: 15px;">
+        <div class="t-item"><span class="t-num" id="days">0</span>дн</div>
+        <div class="t-item"><span class="t-num" id="hours">0</span>час</div>
+        <div class="t-item"><span class="t-num" id="mins">0</span>мин</div>
+    </div>
+</section></body>
+</html>
