@@ -20,7 +20,7 @@ body{
 margin:0;
 font-family:'Cormorant Garamond',serif;
 color:var(--dark);
-background:white;
+background: #B7C4B7; /* Тот самый насыщенный хвойный */
 text-align:center;
 overflow-x: hidden;
 }
@@ -184,13 +184,33 @@ outline:none;
 background: transparent;
 }
 
+/* ===== Стили для кнопки открытия приглашения ===== */
 .btn {
-    display: inline-block; /* Чтобы кнопка не растягивалась на всю ширину */
-    width: auto;           /* Убираем 100% если было */
-    min-width: 280px;      /* Оптимальная ширина для телефона */
-    padding: 15px 20px;
-    /* ... остальные твои стили ... */
+    display: inline-block;
+    padding: 14px 40px; /* Размер кнопки */
+    /* МЕНЯЕМ ТУТ: делаем фон прозрачным */
+    background: transparent !important;
+    color: white !important; /* Текст белый */
+    text-decoration: none;
+    /* МЕНЯЕМ ТУТ: добавляем белую обводку */
+    border: 2px solid white !important;
+    border-radius: 4px; /* Легкое закругление углов */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px; /* Уменьшаем размер текста */
+    letter-spacing: 2px; /* Увеличиваем межбуквенный отступ */
+    text-transform: uppercase; /* Все буквы заглавные */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Плавная анимация при наведении */
+    position: relative;
+    z-index: 100;
 }
+
+/* Эффект при наведении (можно добавить по желанию) */
+.btn:hover {
+    background: white !important; /* Фон становится белым */
+    color: #1a241e !important; /* Текст становится темно-зеленым */
+}
+
 
 /* Адаптив */
 @media(max-width:800px){
@@ -248,47 +268,86 @@ h1{font-size: 2.5rem; letter-spacing: 5px;}
     </p>
 </section>
 
-<section data-aos="fade-up" data-aos-duration="1500" style="padding: 60px 10px; text-align: center; background-color: #f0f4f1; position: relative;">
+<section data-aos="fade-up" data-aos-duration="1500" style="padding: 60px 10px; text-align: center; background-color: #B7C4B7; position: relative; overflow-x: hidden;">
     
-    <div style="position: absolute; top: -100px; left: 0; width: 100%; height: 100px; background: linear-gradient(to bottom, rgba(0,0,0,0), #f0f4f1);"></div>
+    <div style="max-width: 650px; margin: 0 auto; padding: 40px 20px; border: 1.5px solid #1a241e; background-color: #eee9db; position: relative;">
+        <div style="position: absolute; top: 7px; bottom: 7px; left: 7px; right: 7px; border: 0.5px solid rgba(26, 36, 30, 0.4);"></div>
 
-    <div style="position: relative; padding: 50px 15px; border: 1px solid #4a5d4e; margin: 0 5px;">
+        <div style="position: relative; z-index: 2;">
+            <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 18px;">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M90,50 C70,10 50,10 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/><path d='M90,50 C70,90 50,90 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/></svg>" alt="Левая ветвь" style="width: 28px; height: auto; transform: scaleX(-1);">
 
-        <svg style="position: absolute; top: -8px; left: -8px; width: 40px; height: 40px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M100,10 C50,10 10,50 10,100" stroke="#4a5d4e" stroke-width="3" fill="none"/><circle cx="10" cy="10" r="4" fill="#4a5d4e"/></svg>
-        <svg style="position: absolute; top: -8px; right: -8px; width: 40px; height: 40px; transform: rotate(90deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M100,10 C50,10 10,50 10,100" stroke="#4a5d4e" stroke-width="3" fill="none"/><circle cx="10" cy="10" r="4" fill="#4a5d4e"/></svg>
-        <svg style="position: absolute; bottom: -8px; right: -8px; width: 40px; height: 40px; transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M100,10 C50,10 10,50 10,100" stroke="#4a5d4e" stroke-width="3" fill="none"/><circle cx="10" cy="10" r="4" fill="#4a5d4e"/></svg>
-        <svg style="position: absolute; bottom: -8px; left: -8px; width: 40px; height: 40px; transform: rotate(270deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M100,10 C50,10 10,50 10,100" stroke="#4a5d4e" stroke-width="3" fill="none"/><circle cx="10" cy="10" r="4" fill="#4a5d4e"/></svg>
+                <h2 style="font-family: 'Cormorant Garamond', serif; font-variant: small-caps; font-weight: 400; letter-spacing: 2px; color: #1a241e; font-size: 1.6rem; margin: 0; line-height: 1.2;">
+                    Дорогие наши<br>родные и близкие!
+                </h2>
 
-        <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 30px;">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M90,50 C70,10 50,10 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/><path d='M90,50 C70,90 50,90 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/></svg>" alt="Левая ветвь" style="width: 40px; height: auto; transform: scaleX(-1);">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M90,50 C70,10 50,10 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/><path d='M90,50 C70,90 50,90 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/></svg>" alt="Правая ветвь" style="width: 28px; height: auto;">
+            </div>
+            
+            <p style="max-width: 500px; margin: 0 auto 20px; line-height: 1.5; font-family: 'Montserrat', sans-serif; font-variant: small-caps; font-weight: 400; color: #1a1a1a; font-size: 1rem; letter-spacing: 0.5px;">
+                Совсем скоро в нашей жизни произойдет очень важное событие, и нам очень хотелось бы разделить этот замечательный день с вами, и поэтому мы приглашаем вас на нашу свадьбу!
+            </p>
 
-            <h2 style="font-family: 'Cormorant Garamond', serif; font-variant: small-caps; font-weight: 500; letter-spacing: 3px; color: #1a241e; font-size: 1.8rem; margin: 0;">
-                Дорогие наши<br>родные и близкие!
-            </h2>
+            <div style="display: inline-block; padding: 10px 20px;">
+                
+                <div style="width: 100%; height: 1px; background-color: rgba(26, 36, 30, 0.2); margin-bottom: 20px;"></div>
 
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M90,50 C70,10 50,10 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/><path d='M90,50 C70,90 50,90 10,50' stroke='%232d3e33' stroke-width='3' fill='none'/></svg>" alt="Правая ветвь" style="width: 40px; height: auto;">
-        </div>
-        
-        <p style="max-width: 500px; margin: 0 auto 35px; line-height: 1.8; font-family: 'Montserrat', sans-serif; font-variant: small-caps; font-weight: 400; color: #222; font-size: 1rem; letter-spacing: 1px;">
-            Совсем скоро в нашей жизни произойдет очень важное событие, и нам очень хотелось бы разделить этот замечательный день с вами, и поэтому мы приглашаем вас на нашу свадьбу!
-        </p>
+                <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.9rem; color: #1a241e; margin-bottom: 15px; line-height: 1.1; font-weight: 300; letter-spacing: 0.5px;">
+                    Валерий & Наталия
+                </div>
 
-        <div style="font-size: 2.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; color: #1a241e; font-weight: 500; letter-spacing: 4px; border-top: 1px solid rgba(26, 36, 30, 0.2); border-bottom: 1px solid rgba(26, 36, 30, 0.2); display: inline-block; padding: 10px 25px;">
-            08.08.2026
+                <div style="border-top: 1px solid rgba(26, 36, 30, 0.2); border-bottom: 1px solid rgba(26, 36, 30, 0.2); display: inline-block; padding: 8px 12px;">
+                    <div style="font-size: 2.1rem; font-family: 'Cormorant Garamond', serif; font-style: italic; color: #1a241e; font-weight: 500; letter-spacing: 4px;">
+                        08.08.2026
+                    </div>
+                </div>
+
+                <div style="width: 100%; height: 1px; background-color: rgba(26, 36, 30, 0.2); margin-top: 20px;"></div>
+            </div>
         </div>
     </div>
 </section>
 
-<section id="location" data-aos="fade-up" data-aos-duration="1000" style="text-align: center; padding: 60px 20px; background-color: #f0f4f1; color: #1a241e;">
-    
-    <div style="max-width: 600px; margin: 0 auto 30px;">
-        <h2 style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 2rem; color: #1a241e; margin-bottom: 10px;">Ждем вас по адресу</h2>
-        <p style="font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: #1a241e; letter-spacing: 1px;">
-            Йошкар-Ола, ул. Героев Сталинградской битвы 100
-        </p>
-    </div>
 
-    <div style="max-width: 750px; margin: 0 auto; background: #fff; border: 1px solid rgba(26, 36, 30, 0.2); border-radius: 12px; overflow: hidden; box-shadow: 0 15px 45px rgba(26, 36, 30, 0.05);">
+<section id="location" data-aos="fade-up" data-aos-duration="1000"
+style="text-align: center; padding: 60px 20px; color:
+#1a241e;">
+    
+<div style="max-width: 380px; margin: 0 auto 30px; padding: 25px 15px; background-color: #eee9db; border: 1.5px solid #1a241e; position: relative; box-sizing: border-box;">
+    <div style="position: absolute; top: 6px; bottom: 6px; left: 6px; right: 6px; border: 0.5px solid rgba(26, 36, 30, 0.2); pointer-events: none;"></div>
+
+    <div style="position: relative; z-index: 2; text-align: center;">
+        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+            <div style="height: 1px; width: 40px; background-color: #1a241e;"></div>
+            <div style="margin: 0 10px; font-size: 10px; color: #1a241e;">◆</div>
+            <div style="height: 1px; width: 40px; background-color: #1a241e;"></div>
+        </div>
+
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.8rem; color: #1a241e; margin: 0; font-weight: 400;">Ждем вас по адресу</h2>
+        
+        <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 3rem; color: #1a241e; margin: 5px 0; line-height: 1;">
+            Resto Michurin
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 15px;">
+            <div style="height: 1px; width: 40px; background-color: #1a241e;"></div>
+            <div style="margin: 0 10px; font-size: 10px; color: #1a241e;">◆</div>
+            <div style="height: 1px; width: 40px; background-color: #1a241e;"></div>
+        </div>
+
+        <p style="font-family: 'Montserrat', sans-serif; font-size: 1rem; color: #1a241e; margin: 0 auto; max-width: 280px; line-height: 1.4;">
+            Йошкар-Ола, ул. Героев Сталинградской битвы, 100
+        </p>
+        
+        <div style="margin-top: 12px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a241e" stroke-width="1.5">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+        </div>
+    </div>
+</div>
+
         
         <div id="photo-slider" style="width: 100%; height: 350px; position: relative; overflow: hidden;">
             <img class="slide" src="club1.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; left: 0; top: 0; transition: opacity 0.8s ease-in-out; opacity: 1;">
