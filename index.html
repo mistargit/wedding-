@@ -349,7 +349,7 @@ style="text-align: center; padding: 60px 20px; color:
 </div>
 
         
-        <div id="photo-slider" style="width: 100%; height: 350px; position: relative; overflow: hidden;">
+               <div id="photo-slider" style="width: 100%; height: 350px; position: relative; overflow: hidden; border-radius: 15px;">
             <img class="slide" src="club1.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; left: 0; top: 0; transition: opacity 0.8s ease-in-out; opacity: 1;">
             <img class="slide" src="club2.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; left: 0; top: 0; transition: opacity 0.8s ease-in-out; opacity: 0;">
             <img class="slide" src="club3.jpg" style="width: 100%; height: 100%; object-fit: cover; position: absolute; left: 0; top: 0; transition: opacity 0.8s ease-in-out; opacity: 0;">
@@ -358,7 +358,8 @@ style="text-align: center; padding: 60px 20px; color:
             <button onclick="changeSlide(1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.7); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; color: #1a241e; font-size: 20px; z-index: 10;">&#10095;</button>
         </div>
 
-        <div id="map" style="width: 100%; height: 350px; border-top: 1px solid #eee;"></div>
+        <div id="map" style="width: 100%; height: 350px; margin-top: 30px; border-radius: 15px; overflow: hidden; border: 1px solid rgba(26, 36, 30, 0.1);"></div>
+
     </div>
 
     <div style="margin-top: 30px;">
@@ -368,27 +369,36 @@ style="text-align: center; padding: 60px 20px; color:
     </div>
 
     <script type="text/javascript">
-        // Логика слайдера с кнопками
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        
-        function showSlide(index) {
-            slides.forEach(s => s.style.opacity = 0);
-            slides[index].style.opacity = 1;
-        }
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    let autoPlay;
 
-        function changeSlide(step) {
-            currentSlide = (currentSlide + step + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
+    function showSlide(index) {
+        slides.forEach(s => s.style.opacity = 0);
+        slides[index].style.opacity = 1;
+    }
 
-        // Автопрокрутка тоже остается, но кнопки её перебивают
-        let autoPlay = setInterval(() => changeSlide(1), 5000);
+    function changeSlide(step) {
+        currentSlide = (currentSlide + step + slides.length) % slides.length;
+        showSlide(currentSlide);
+        resetTimer(); // Сбрасываем таймер при ручном переключении
+    }
 
-        // Остановить автопрокрутку при нажатии на кнопки
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', () => clearInterval(autoPlay));
-        });
+    // Функция запуска автопрокрутки
+    function startAutoPlay() {
+        autoPlay = setInterval(() => {
+            changeSlide(1);
+        }, 5000); // 5 секунд
+    }
+
+    // Функция сброса таймера (чтобы слайд не прыгал сразу после нажатия кнопки)
+    function resetTimer() {
+        clearInterval(autoPlay);
+        startAutoPlay();
+    }
+
+    // Запускаем при загрузке
+    startAutoPlay();
 
         // Карта
         ymaps.ready(function() {
@@ -409,8 +419,6 @@ style="text-align: center; padding: 60px 20px; color:
         });
     </script>
 </section>
-
-
 
 <section 
   style="background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('bg-program.jpg') no-repeat center center fixed; background-size: cover; color: #333;" 
@@ -441,18 +449,36 @@ style="text-align: center; padding: 60px 20px; color:
     </div>
 </section>
 
+<section id="dress-code" data-aos="fade-up" style="padding: 60px 10px; text-align: center; background-color: transparent;">
+    
+    <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #1a241e; text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 15px;">
+        Дресс-код
+    </h2>
 
+    <p style="font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #1a241e; max-width: 480px; margin: 0 auto 30px; line-height: 1.5; letter-spacing: 0.3px;">
+        Мы очень стараемся сделать праздник красивым, поэтому будем очень благодарны, если вы поддержите цветовую гамму нашего торжества
+    </p>
 
-<section style="background:#fdfdfb;" data-aos="zoom-in" data-aos-duration="1500">
-<h2>ДРЕСС-КОД</h2>
-<p>Будем признательны, если поддержите палитру вечера</p>
-<div class="colors">
-<div class="circle" style="background:#E5D3C5;"></div>
-<div class="circle" style="background:#A6A996;"></div>
-<div class="circle" style="background:#4A4E44;"></div>
-<div class="circle" style="background:#FFFFFF;"></div>
-</div>
+    <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 35px;">
+        <div style="width: 40px; height: 40px; background-color: #2d3e33; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1);"></div>
+        <div style="width: 40px; height: 40px; background-color: #728069; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1);"></div>
+        <div style="width: 40px; height: 40px; background-color: #5d4037; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1);"></div>
+        <div style="width: 40px; height: 40px; background-color: #eee9db; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1);"></div>
+    </div>
+
+    <div id="dress-code-photos" style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+        
+        <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+            <img src="image_7.png" alt="Мужские образы для дресс-кода" style="width: 100%; height: auto; display: block; object-fit: cover;">
+        </div>
+
+        <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+            <img src="image_8.png" alt="Женские образы для дресс-кода" style="width: 100%; height: auto; display: block; object-fit: cover;">
+        </div>
+    </div>
+
 </section>
+
 
 <section data-aos="fade-up" data-aos-duration="1500">
 <div class="form-box">
